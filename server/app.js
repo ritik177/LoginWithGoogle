@@ -10,8 +10,9 @@ const OAuth2Strategy = require("passport-google-oauth2").Strategy;
 const userdb = require("./model/userSchema");
 
 
-clientid = " 367352472221-sqhgqerude1g65hn5etp3n68oksms121.apps.googleusercontent.com";
-clientsecret = "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 "
+const clientid = process.env.CLIENTID;
+const clientsecret = process.env.CLIENTSECRET;
+
 
 app.use(cors({
     origin: "http://localhost:3000/",
