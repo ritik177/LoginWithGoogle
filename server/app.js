@@ -15,15 +15,14 @@ const clientsecret = process.env.CLIENTSECRET;
 
 
 
-
 // app.use(cors({
-//     origin: "http://localhost:3000/",
+//     origin: "https://login-with-google-pnt0.onrender.com",
 //     methods: "GET, POST, PUT, DELETE",
 //     credentials: true
 // }));
 
 const corsOptions = {
-    origin: "http://localhost:3000",
+    origin: "https://login-with-google-pnt0.onrender.com",
     methods: "GET, POST, PUT, DELETE",
     credentials: true
 };
@@ -85,8 +84,8 @@ passport.deserializeUser((user, done) => {
 app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 app.get("/auth/google/callback", passport.authenticate("google", {
-    successRedirect: "http://localhost:3000/dashboard",
-    failureRedirect: "http://localhost:3000/login"
+    successRedirect: "https://login-with-google-pnt0.onrender.com/dashboard",
+    failureRedirect: "https://login-with-google-pnt0.onrender.com/login"
 }))
 
 app.get("/login/sucess", async (req, res) => {
@@ -100,7 +99,7 @@ app.get("/login/sucess", async (req, res) => {
 app.get("/logout", (req, res, next) => {
     req.logout(function (err) {//it is a callback function 
         if (err) { return next(err) }
-        res.redirect("http://localhost:3000")
+        res.redirect("https://login-with-google-pnt0.onrender.com")
     })
 })
 
