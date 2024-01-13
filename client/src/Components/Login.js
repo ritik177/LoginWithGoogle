@@ -4,6 +4,11 @@ import './login.css';
 
 
 const Login = () => {
+
+  const loginwithgoogle = () => {
+    window.open("http://localhost:6005/auth/google/callback", "_self")
+  }
+
   return (
     <>
       <div className="login-page">
@@ -15,11 +20,12 @@ const Login = () => {
             <button className='btn'>Login</button>
             <p className="message">Not Register? <a href='#'> Create an account</a></p>
           </form>
-          <button className='login-with-google-btn'> SIGN IN with Google</button>
+          <button className='login-with-google-btn' onClick={loginwithgoogle} > SIGN IN with Google</button>
+
         </div>
       </div>
     </>
   )
 }
 
-export default Login
+export default Login;

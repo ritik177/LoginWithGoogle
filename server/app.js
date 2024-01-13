@@ -5,7 +5,7 @@ const cors = require("cors");
 require("./db/conn");
 const PORT = 6005;
 const session = require("express-session");
-const passport = requirGOCSPX - tsxccxpeHS8fvTvZggonNfxkq1wJe("passport");
+const passport = require("passport");
 const OAuth2Strategy = require("passport-google-oauth2").Strategy;
 const userdb = require("./model/userSchema");
 
@@ -14,17 +14,25 @@ const clientid = process.env.CLIENTID;
 const clientsecret = process.env.CLIENTSECRET;
 
 
-app.use(cors({
-    origin: "http://localhost:3000/",
+
+
+// app.use(cors({
+//     origin: "http://localhost:3000/",
+//     methods: "GET, POST, PUT, DELETE",
+//     credentials: true
+// }));
+
+const corsOptions = {
+    origin: "http://localhost:3000",
     methods: "GET, POST, PUT, DELETE",
     credentials: true
-}));
+};
 
 
+app.use(cors(corsOptions));
 app.use(express.json());
 
 //setup session 
-
 app.use(session({ // jab bhi hum google login karenge tab ye ek increapted form me ek  id create karega wo hogi session id aur jab us id ko decode karenge to vaha se hame user ka pura data milega 
 
     secret: "1234kfngkgndffnvvgr",
@@ -77,9 +85,24 @@ passport.deserializeUser((user, done) => {
 app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 app.get("/auth/google/callback", passport.authenticate("google", {
-    successRedirect: "http://localhost:3001/dashboard",
-    failureRedirect: "http://localhost:3001/login"
+    successRedirect: "http://localhost:3000/dashboard",
+    failureRedirect: "http://localhost:3000/login"
 }))
+
+app.get("/login/sucess", async (req, res) => {
+    if (req.user) {
+        res.status(200).json({ message: "user login", user: req.user })
+    } else {
+        res.status(404).json({ message: "Not Authorised" })
+    }
+})
+
+app.get("/logout", (req, res, next) => {
+    req.logout(function (err) {//it is a callback function 
+        if (err) { return next(err) }
+        res.redirect("http://localhost:3000")
+    })
+})
 
 //get response 
 // app.get("/", (req, res) => {
@@ -89,4 +112,20 @@ app.get("/auth/google/callback", passport.authenticate("google", {
 //server start
 app.listen(PORT, () => {
     console.log(`server start at port no ${PORT}`)
-}); 
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
