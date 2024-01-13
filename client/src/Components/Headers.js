@@ -12,7 +12,7 @@ const Headers = () => {
 
   const getUser = async () => {
     try {
-      const response = await axios.get("http://localhost:6005/login/sucess", { withCredentials: true });
+      const response = await axios.get("https://login-with-google-pnt0.onrender.com/login/sucess", { withCredentials: true });
       setUserdata(response.data.user);
     } catch (error) {
       console.log("error", error);
@@ -22,14 +22,14 @@ const Headers = () => {
 
   //Logout
   const logout = () => {
-    window.open("http://localhost:6005/logout", "_self")
+    window.open("https://login-with-google-pnt0.onrender.com/logout", "_self")
   }
 
   useEffect(() => {
     getUser()
   }, [])
 
-  
+
   return (
     <>
       <header>
