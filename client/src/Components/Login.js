@@ -6,7 +6,7 @@ import './login.css';
 const Login = () => {
 
   const loginwithgoogle = () => {
-    window.open("https://login-with-google-delta.vercel.app/auth/google/callback", "_self")
+    window.open("https://login-with-google-pnt0.onrender.com/auth/google/callback", "_self")
   }
 
   return (
