@@ -14,13 +14,6 @@ const clientid = process.env.CLIENTID;
 const clientsecret = process.env.CLIENTSECRET;
 
 
-
-// app.use(cors({
-//     origin: "https://login-with-google-pnt0.onrender.com",
-//     methods: "GET, POST, PUT, DELETE",
-//     credentials: true
-// }));
-
 const corsOptions = {
     origin: "https://login-with-google-delta.vercel.app",
     methods: "GET, POST, PUT, DELETE",
@@ -100,6 +93,8 @@ app.get("/logout", (req, res, next) => {
     req.logout(function (err) {//it is a callback function 
         if (err) { return next(err) }
         res.redirect("https://login-with-google-delta.vercel.app")
+        // res.redirect("https://login-with-google-delta.vercel.app")
+
     })
 })
 

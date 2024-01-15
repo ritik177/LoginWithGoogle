@@ -31,7 +31,7 @@ In the google Developer Console , go to "credentials" in the left sidebar.
 Click on " Create Credentials" and select "OAuth client ID".
 choose "Web application" as the application type.
 Set the authorized javaScript origins (e.g., http://localhost, http://localhost:3000 for deveopment).
-Set the authorised redirect URIs (e.g, http://localhost:6003/auth/google/callback for development).
+Set the authorised redirect URIs (e.g, http://localhost:6005/auth/google/callback for development).
 Click "create"
 
 save the generated client ID and Client Secret.
